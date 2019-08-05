@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/gci/</loc>
+    <lastmod>2018-01-13T10:29:23+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/my_first_blog/</loc>
+    <lastmod>2019-08-05T13:05:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/</loc>
+    <lastmod>2019-08-05T13:05:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/</loc>
+    <lastmod>2019-08-05T13:05:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/categories/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/hugoisforlovers/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/categories/development/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/development/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/go/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/categories/golang/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/golang/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/hugo/</loc>
+    <lastmod>2018-01-28T18:59:43+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/categories/blogging/</loc>
+    <lastmod>2018-01-13T10:29:23+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/google-code-in/</loc>
+    <lastmod>2018-01-13T10:29:23+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/openwisp/</loc>
+    <lastmod>2018-01-13T10:29:23+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/creating-a-new-theme/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/categories/tutorials/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/goisforlovers/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/templates/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/themes/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/posts/migrate-from-jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hugoit.github.io/tags/tutorials/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

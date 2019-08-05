@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Integer on 程序员说事儿</title>
+    <link>https://hugoit.github.io/tags/integer/</link>
+    <description>Recent content in Integer on 程序员说事儿</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://hugoit.github.io/tags/integer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>谈谈Java中==和equals到底有啥区别</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/</guid>
+      <description>之前在IDEA中引入了阿里巴巴的Java规范插件，自动检测了一下开发中的项目，发现很多“不规范”的“常规”代码。然而，往往被我们忽视的常见代码，会隐藏着不规范的漏洞。
+相信刚入职的Java开发者都遇到过这样的面试题：“说一下Java中==和equals的区别”。
+我们先来复习一下，Java中的基本数据类型
+Java中基本数据类型 上述Java中八种基本数据类型，对应的包装类型分别为：Boolean、Byte、Character、Short、Integer、Long、Float、Double。 将基本数据类型封装成对象的好处在于可以在对象中定义更多的功能方法操作该数据。
+包装类之间相等判断  包装类型间的相等判断应该用equals，而不是“==”；  原因分析： &amp;gt;包装类型间的相等判断应该用equals，而不是&amp;rsquo;==&amp;lsquo;。  说明：对于Integer var=?在-128至127之间的赋值，Integer对象是在IntegerCache.cache产生，会复用已有对象，这个区间内的Integer值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑，推荐使用equals方法进行判断。 + 示例：
+public class EqualsTest { public static void main(String[] args) { Integer a0 = 256; Integer b0 = 256; // 结果输出false：包装类型的相等比较应该用equals // Integer范围：-128~127 System.out.println(a0==b0); Integer a1 = -128; Integer b1 = -128; // 结果输出true：包装类型的相等比较应该用equals // Integer范围：-128~127 System.out.println(a1==b1); } }   分析：  上述定义变量a0、b0等，实际体现在Integer源码中是调用valueOf(int i)方法
+public static Integer valueOf(int i) { if (i &amp;gt;= IntegerCache.</description>
+    </item>
+    
+  </channel>
+</rss>

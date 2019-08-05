@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<title>
+	谈谈Java中==和equals到底有啥区别
+</title>
+		<style>
+	body, body.pushable {
+		background-repeat: no-repeat;
+	  	background-attachment: fixed;
+	  	background-size: cover !important;
+	}
+</style>
+
+		<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+	
+	
+	
+	<meta name="author" content="程序虫" />
+	<meta name="description" content="Java中==和equals的区别，走进源码看真相." />
+
+
+
+<meta name="generator" content="Hugo 0.56.3" />
+
+
+<link rel="shortcut icon" href="/img/defaultFav.ico">
+
+
+
+
+		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+
+ <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Inconsolata" rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+
+
+
+
+
+
+
+
+<style>
+	body.pushable {
+		display: block;
+		
+			background-image: var(--bgImage) !important;
+		 ;
+	}
+</style>
+
+
+
+<script>
+	
+	var isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	console.log("The client device is a "+(isMobile?"mobile":"PC")+".")
+</script>
+
+	</head>
+
+	<body>
+		<script>
+var prevBgIndex = 0;
+var bodyBgSwitchIndex = 0;
+
+
+
+
+
+
+	
+		var gradients = [
+		  [],
+		  ['#40e0d0', '#ff8c00', '#ff0080'], 
+		  ['#3e5151', '#decba4'], 
+		  ['#11998e', '#38ef7d'], 
+		  ['#108dc7', '#ef8e38'], 
+		  ['#fc5c7d', '#6a82fb'], 
+		  ['#fc466b', '#3f5efb'], 
+		  ['#c94b4b', '#4b134f'], 
+		  ['#23074d', '#cc5333'] 
+		];
+		var randomBgColor = gradients[getRandomInt(0, gradients.length)].join(", ");
+		var backgroundProperty = 'linear-gradient(to right, ' + randomBgColor + ')';
+		document.body.style.background = backgroundProperty;
+	
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  var random;
+  while (1) {
+    random = Math.floor(Math.random() * (max - min)) + min;
+    if (random !== prevBgIndex) {
+      prevBgIndex = random;
+      break;
+    }
+  }
+  return random;
+}
+</script>
+
+
+
+
+		<div id="sidebar" class="ui sidebar inverted vertical menu">
+	
+	<section id="author" class="ui top attached center aligned inverted segment">
+		
+<div class="ui small circular image">
+	
+		<img src="https://raw.githubusercontent.com/UtkarshVerma/utkarshverma.github.io/source/static/images/avatar.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	程序虫
+	<div class="sub header">天生我材必有用，留取丹青照我心.</div>
+</h3>
+
+	</section>
+
+	
+	
+		<section class="ui attached center aligned inverted segment sidebar-dream-tags">
+			
+			
+			
+			
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label teal " href="/tags/development" title="development">development</a>
+		
+			
+			<a class="ui label blue " href="/tags/go" title="go">go</a>
+		
+			
+			<a class="ui label purple " href="/tags/golang" title="golang">golang</a>
+		
+			
+			<a class="ui label teal " href="/tags/equals" title="equals">equals</a>
+		
+			
+			<a class="ui label yellow " href="/tags/google-code-in" title="google-code-in">google-code-in</a>
+		
+			
+			<a class="ui label blue " href="/tags/hugo" title="hugo">hugo</a>
+		
+			
+			<a class="ui label pink " href="/tags/integer" title="integer">integer</a>
+		
+			
+			<a class="ui label green " href="/tags/java" title="java">java</a>
+		
+	
+
+
+		</section>
+	
+
+	
+	
+		<section class="ui attached inverted segment sidebar-dream-categories both flexbox">
+			<div class="ui inverted accordion">
+				
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/gci/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Google Code-in with OpenWISP</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/development">development</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>谈谈Java中==和equals到底有啥区别</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/hugoisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Getting Started with Hugo</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/goisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>(Hu)go Template Primer</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/golang">golang</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/hugoisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Getting Started with Hugo</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/goisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>(Hu)go Template Primer</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/java">java</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>谈谈Java中==和equals到底有啥区别</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/tutorials">tutorials</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/creating-a-new-theme/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Creating a New Theme</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+			</div>
+		</section>
+	
+
+	
+	<section id="footer" class="ui bottom attached center aligned inverted segment">
+		
+
+	<p>© 2019 程序员说事儿</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+	</section>
+</div>
+
+
+		<div class="pusher">
+			<div class="flipper">
+				<div class="front">
+					
+	<nav class="ui top secondary menu bar">
+	
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+
+	
+	
+		<div class="item">
+			<a href="/">
+				<i class="inverted big link home icon" title="Home"></i>
+			</a>
+		</div>
+	
+
+	
+	
+
+	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
+	
+
+	
+	
+		<div class="item">
+			<a href="/categories">
+				<i class="inverted big link cubes icon" title="All Categories"></i>
+			</a>
+    	</div>
+	
+
+	
+	
+
+	
+	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
+
+	
+	
+		<div class="item right">
+			<a href="/posts/index.xml">
+				<i class="inverted big link rss icon" title="RSS Feed"></i>
+			</a>
+		</div>
+	
+</nav>
+
+
+	<div class="ui centered grid">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
+	<div id="header" class="ui inverted segment column box">		
+		
+		<header id="author" class="ui top attached center aligned inverted segment">
+			
+<div class="ui small circular image">
+	
+		<img src="https://raw.githubusercontent.com/UtkarshVerma/utkarshverma.github.io/source/static/images/avatar.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	程序虫
+	<div class="sub header">天生我材必有用，留取丹青照我心.</div>
+</h3>
+
+		</header>
+
+		
+		<div class=" title header-title">
+			
+				<div id="tag-category-pop" class="ui red right corner label">
+					<i class="hand point icon down" title="Show/hide tags and categories"></i>
+				</div>
+			
+		</div>
+		
+		
+		<div id="tag-category" class=" content">
+			
+				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
+					
+					
+					
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label yellow " href="/tags/development" title="development">development</a>
+		
+			
+			<a class="ui label violet " href="/tags/go" title="go">go</a>
+		
+			
+			<a class="ui label orange " href="/tags/golang" title="golang">golang</a>
+		
+			
+			<a class="ui label brown " href="/tags/equals" title="equals">equals</a>
+		
+			
+			<a class="ui label violet " href="/tags/google-code-in" title="google-code-in">google-code-in</a>
+		
+			
+			<a class="ui label teal " href="/tags/hugo" title="hugo">hugo</a>
+		
+			
+			<a class="ui label teal " href="/tags/integer" title="integer">integer</a>
+		
+			
+			<a class="ui label violet " href="/tags/java" title="java">java</a>
+		
+	
+
+
+				</section>
+			
+
+			
+				<section class="ui attached inverted segment dream-categories both flexbox">
+					<div class="inverted accordion">
+						
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/gci/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Google Code-in with OpenWISP</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/development">development</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>谈谈Java中==和equals到底有啥区别</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/hugoisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Getting Started with Hugo</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/goisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>(Hu)go Template Primer</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/golang">golang</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/hugoisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Getting Started with Hugo</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://hugoit.github.io/posts/goisforlovers/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>(Hu)go Template Primer</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/java">java</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>谈谈Java中==和equals到底有啥区别</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/tutorials">tutorials</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://hugoit.github.io/posts/creating-a-new-theme/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Creating a New Theme</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+					</div>
+				</section>
+			
+		</div>
+
+		
+		<footer class="ui bottom attached center aligned inverted segment">
+			
+
+	<p>© 2019 程序员说事儿</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+		</footer>
+	</div>
+</div>
+
+		</div>
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					谈谈Java中==和equals到底有啥区别
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>Jul 3, 2019</span></div>
+					
+					<div><span><i class="clock outline icon"></i>2 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on Jul 3, 2019</span></div>
+				</div>
+				<hr>
+
+				
+					<div class="toc">
+						<nav id="TableOfContents">
+<ul>
+<li><a href="#java中基本数据类型">Java中基本数据类型</a></li>
+<li><a href="#包装类之间相等判断">包装类之间相等判断</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+					</div>
+				
+
+				<article class="post-content twemoji">
+					
+
+<p>之前在IDEA中引入了阿里巴巴的Java规范插件，自动检测了一下开发中的项目，发现很多“不规范”的“常规”代码。然而，往往被我们忽视的常见代码，会隐藏着不规范的漏洞。</p>
+
+<p>相信刚入职的Java开发者都遇到过这样的面试题：“说一下Java中==和equals的区别”。</p>
+
+<p>我们先来复习一下，Java中的基本数据类型</p>
+
+<h1 id="java中基本数据类型">Java中基本数据类型&nbsp;<a class="anchor" href="#java中基本数据类型"><i class="small linkify icon"></i></a> </h1>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/2662937-5c42bfa808d63eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="primitive-types-in-Java.png" />
+上述Java中八种基本数据类型，对应的包装类型分别为：Boolean、Byte、Character、Short、Integer、Long、Float、Double。
+将基本数据类型封装成对象的好处在于可以在对象中定义更多的功能方法操作该数据。</p>
+
+<h1 id="包装类之间相等判断">包装类之间相等判断&nbsp;<a class="anchor" href="#包装类之间相等判断"><i class="small linkify icon"></i></a> </h1>
+
+<ul>
+<li>包装类型间的相等判断应该用equals，而不是“==”；
+<img src="https://upload-images.jianshu.io/upload_images/2662937-1fb1e95bbe22b48b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="警告提示.png" /></li>
+<li>原因分析：
+<img src="https://upload-images.jianshu.io/upload_images/2662937-e84ea508fd534dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原因.png" />
+&gt;包装类型间的相等判断应该用equals，而不是&rsquo;==&lsquo;。</li>
+</ul>
+
+<p>说明：对于Integer var=?在-128至127之间的赋值，Integer对象是在IntegerCache.cache产生，会复用已有对象，这个区间内的Integer值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑，推荐使用equals方法进行判断。
++ 示例：</p>
+
+<pre><code>public class EqualsTest {
+    public static void main(String[] args) {
+        Integer a0 = 256;
+        Integer b0 = 256;
+        // 结果输出false：包装类型的相等比较应该用equals
+        // Integer范围：-128~127
+        System.out.println(a0==b0);
+
+        Integer a1 = -128;
+        Integer b1 = -128;
+        // 结果输出true：包装类型的相等比较应该用equals
+        // Integer范围：-128~127
+        System.out.println(a1==b1);
+    }
+}
+</code></pre>
+
+<ul>
+<li>分析：</li>
+</ul>
+
+<p>上述定义变量a0、b0等，实际体现在Integer源码中是调用valueOf(int i)方法</p>
+
+<pre><code>public static Integer valueOf(int i) {
+        if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+            return IntegerCache.cache[i + (-IntegerCache.low)];
+        return new Integer(i);
+    }
+</code></pre>
+
+<p>可见，当i的值在low和high范围内，直接取IntegerCache.cache的常量池中得对象。如果在范围之外，则直接new一个Integer新的对象。</p>
+
+<p>查看一下Integer源码中IntegerCache部分：</p>
+
+<pre><code>/**
+     * Cache to support the object identity semantics of autoboxing for values between
+     * -128 and 127 (inclusive) as required by JLS.
+     *
+     * The cache is initialized on first usage.  The size of the cache
+     * may be controlled by the {@code -XX:AutoBoxCacheMax=&lt;size&gt;} option.
+     * During VM initialization, java.lang.Integer.IntegerCache.high property
+     * may be set and saved in the private system properties in the
+     * sun.misc.VM class.
+     */
+
+    private static class IntegerCache {
+        static final int low = -128;
+        static final int high;
+        static final Integer cache[];
+
+        static {
+            // high value may be configured by property
+            int h = 127;
+            String integerCacheHighPropValue =
+                sun.misc.VM.getSavedProperty(&quot;java.lang.Integer.IntegerCache.high&quot;);
+            if (integerCacheHighPropValue != null) {
+                try {
+                    int i = parseInt(integerCacheHighPropValue);
+                    i = Math.max(i, 127);
+                    // Maximum array size is Integer.MAX_VALUE
+                    h = Math.min(i, Integer.MAX_VALUE - (-low) -1);
+                } catch( NumberFormatException nfe) {
+                    // If the property cannot be parsed into an int, ignore it.
+                }
+            }
+            high = h;
+
+            cache = new Integer[(high - low) + 1];
+            int j = low;
+            for(int k = 0; k &lt; cache.length; k++)
+                cache[k] = new Integer(j++);
+
+            // range [-128, 127] must be interned (JLS7 5.1.7)
+            assert IntegerCache.high &gt;= 127;
+        }
+
+        private IntegerCache() {}
+    }
+</code></pre>
+
+<p>可见，IntegerCache中范围为-128到127，在这个范围内的对象，直接从cache[]，Integer常量池中获取。
+如果想控制范围大小，则需要通过-XX:AutoBoxCacheMax=<size>设置。</p>
+
+<p>我们进一步查看一下JDK中Integer源码中equals方法：</p>
+
+<pre><code>public boolean equals(Object obj) {
+        if (obj instanceof Integer) {
+            return value == ((Integer)obj).intValue();
+        }
+        return false;
+    }
+</code></pre>
+
+<p>可见，Integer重写了equals方法，通过equals比较的是Integer包装类的int值。</p>
+
+<ul>
+<li><p>附：
+所有整数类型的类都有类似的缓存机制:
+Byte 有 ByteCache 用于缓存 Byte 对象；
+Short 有 ShortCache 用于缓存 Short 对象；
+Long 有 LongCache 用于缓存 Long 对象。
+Byte，Short，Long 的缓存池范围默认都是: -128 到 127。</p></li>
+
+<li><p>在日常项目开发中，我们往往喜欢使用==进行比较，因为日常开发中封装在实体类中的数值通常范围都在-128-127范围之内，所以基本没出现过异常，但是为了更好、更规范、更严谨的使用Java，还是需要使用equals比较。</p></li>
+</ul>
+
+<h1 id="总结">总结&nbsp;<a class="anchor" href="#总结"><i class="small linkify icon"></i></a> </h1>
+
+<blockquote>
+<p>1.==的比较（基本数据类型，比较的是值是否相等；非基本数据类型，即引用类型，比较的是对象指向的内存地址是否一致，即同一对象。）</p>
+
+<p>2.而equals的比较（如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址；包装类型中分别都对equals方法进行了重写，只比较值是否相等。）</p>
+</blockquote>
+
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
+				
+					
+
+
+
+
+	
+		<a class="ui label olive " href="/tags/java" title="java">java</a>
+	
+		<a class="ui label orange " href="/tags/equals" title="equals">equals</a>
+	
+		<a class="ui label blue " href="/tags/%E8%A7%84%E8%8C%83" title="规范">规范</a>
+	
+		<a class="ui label purple " href="/tags/integer" title="Integer">Integer</a>
+	
+		<a class="ui label purple " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
+	
+
+
+				
+			</section>
+
+			
+			
+				<section class="ui secondary bottom attached segment share row box">
+					
+
+
+
+
+
+
+
+
+<div class="author">
+	
+	<img class="avatar" src="https://raw.githubusercontent.com/UtkarshVerma/utkarshverma.github.io/source/static/images/avatar.jpg">
+	
+</div>
+<div class="info grow flexbox">
+	<a href="https://twitter.com/HugoIT">
+	<p class="name">程序虫</p>
+	</a>
+	<p class="desc"> </p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
+	</div>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;谈谈Java中==和equals到底有啥区别 &quot; by @HugoIT https:\/\/hugoit.github.io\/posts\/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
+	</div>
+</section>
+
+				</section>
+			
+
+			
+			
+			
+
+			
+			
+		</div>
+	</div>
+
+				</div>
+				<div class="back">
+					
+<nav class="ui top secondary menu bar">
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+		
+			<div class="item">
+				<a href="https://github.com/HugoIT" target="	_blank">
+					<i id="ico" class="inverted big link github icon" title="GitHub"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+			<div class="item">
+				<a href="mailto:alliswelltzy@163.com" target="	_blank">
+					<i id="ico" class="inverted big link mail icon" title="Email"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://twitter.com/HugoIT" target="	_blank">
+					<i id="ico" class="inverted big link twitter icon" title="Twitter"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://medium.com/@HugoIT" target="	_blank">
+					<i id="ico" class="inverted big link medium icon" title="Medium"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://www.stackoverflow.com/users/9271608/utkarsh-verma" target="	_blank">
+					<i id="ico" class="inverted big link stack overflow icon" title="Stack Overflow"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+</nav>
+
+
+
+<div class="ui centered grid about">
+	<div class="sixteen wide mobile fifteen wide tablet fifteen wide computer column about">
+		<section class="ui stacked segments">
+			<div class="ui inverted segment">
+				<article class="twemoji">
+					<h1>So, Who Am I?</h1>
+
+<hr />
+
+<p><br>
+I’m just another teenager who likes <strong>writing</strong>, <strong>programming</strong> and <strong>making stuff</strong>. Even setting the title as <strong>Who Am I</strong>  for this article is reminding me of <code>whoami</code> in Linux. I feel the inner urge to contribute something to the Internet because I love writing and I believe posting something online enables users all around the globe to see your work and suggest improvements.</p>
+
+<p>Recently I&rsquo;ve also started taking interest in web designing and hosting the fruitful results of which these site and blogs are! I also make <strong>projects</strong> and share them online at <strong>Instructables</strong>, the link of which has been placed on the home page. Making stuff is just one of the things I love the most.</p>
+
+<p>That’s all that I can think of right now. Hopefully I’ll add something more to this later on. 😅</p>
+
+<p>Curious about me? Use the social links above to check out my profiles.</p>
+
+<p>You can also support me on <a href="https://patreon.com/UtkarshVerma" target="_blank">Patreon</a>. I&rsquo;d really appreciate it.</p>
+
+				</article>
+			</div>
+		</section>
+	</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+	
+	
+
+		
+
+<script src="/js/site.js"></script>
+
+
+
+	<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.6"></script>
+
+
+
+
+
+
+
+
+
+		
+
+
+		
+
+	<script>
+		(function () {
+		  console.log("Twemoji up and making stuff colourful!");
+		  for (var b = document.getElementsByClassName("twemoji"), a = 0; a < b.length; a++) {
+			twemoji.parse(b[a]);
+		  }
+		})();
+	</script>
+
+
+	</body>
+</html>

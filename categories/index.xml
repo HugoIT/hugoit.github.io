@@ -5,7 +5,7 @@
     <link>https://hugoit.github.io/categories/</link>
     <description>Recent content in Categories on 程序员说事儿</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 28 Jan 2018 18:59:43 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hugoit.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,9 +13,18 @@
     <item>
       <title>development</title>
       <link>https://hugoit.github.io/categories/development/</link>
-      <pubDate>Sun, 28 Jan 2018 18:59:43 +0530</pubDate>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://hugoit.github.io/categories/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://hugoit.github.io/categories/java/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/categories/java/</guid>
       <description></description>
     </item>
     

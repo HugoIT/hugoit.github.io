@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>源码 on 程序员说事儿</title>
-    <link>https://hugoit.github.io/tags/%E6%BA%90%E7%A0%81/</link>
-    <description>Recent content in 源码 on 程序员说事儿</description>
+    <title>Effective Java on 程序员说事儿</title>
+    <link>https://hugoit.github.io/tags/effective-java/</link>
+    <description>Recent content in Effective Java on 程序员说事儿</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hugoit.github.io/tags/%E6%BA%90%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hugoit.github.io/tags/effective-java/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>谈谈Java中线程的执行顺序</title>
-      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link>
-      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid>
-      <description>线程执行顺序 我们先来看一个简单的例子，我们显示地创建三个线程t1、t2、t3，按照声明的顺序，依次分别调用线程的start方法，线程的执行顺序是怎样的？程序执行的结果会如何？：
-public class ThreadOrderDemo { // 显示地创建三个线程，观察执行顺序 static Thread t1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread1&amp;quot;); } }); static Thread t2 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread2&amp;quot;); } }); static Thread t3 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread3&amp;quot;); } }); public static void main(String[] args) throws Exception { t1.</description>
-    </item>
     
     <item>
       <title>谈谈Java中hashCode和equals方法</title>
@@ -40,21 +30,6 @@ public boolean equals(Object obj) { return (this == obj); }  业务上相等 查
 而我们业务中通常追求的是只是业务上的内容相等，所以我们业务中使用的类都是需要重写equals和hashCode方法的。
 重写equals方法，同时必须重写hashCode方法 我们从Objec类官方API文档中，可知： “如果两个对象根据equals（Object）方法相等，则对两个对象中的每一个调用hashCode方法必须生成相同的整数结果”。 所以我们重写equals方法的时候，为了满足这个原则，也必须同时重写hashCode方法。
 public class ObjectEquals { public static void main(String[] args) { Student student1 = new Student(&amp;quot;LeBron Jame&amp;quot;, 12); Student student2 = new Student(&amp;quot;LeBron Jame&amp;quot;, 12); System.</description>
-    </item>
-    
-    <item>
-      <title>谈谈Java中==和equals到底有啥区别</title>
-      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/</link>
-      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/</guid>
-      <description>之前在IDEA中引入了阿里巴巴的Java规范插件，自动检测了一下开发中的项目，发现很多“不规范”的“常规”代码。然而，往往被我们忽视的常见代码，会隐藏着不规范的漏洞。
-相信刚入职的Java开发者都遇到过这样的面试题：“说一下Java中==和equals的区别”。
-我们先来复习一下，Java中的基本数据类型
-Java中基本数据类型 上述Java中八种基本数据类型，对应的包装类型分别为：Boolean、Byte、Character、Short、Integer、Long、Float、Double。 将基本数据类型封装成对象的好处在于可以在对象中定义更多的功能方法操作该数据。
-包装类之间相等判断  包装类型间的相等判断应该用equals，而不是“==”；  原因分析： &amp;gt;包装类型间的相等判断应该用equals，而不是&amp;rsquo;==&amp;lsquo;。  说明：对于Integer var=?在-128至127之间的赋值，Integer对象是在IntegerCache.cache产生，会复用已有对象，这个区间内的Integer值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑，推荐使用equals方法进行判断。 + 示例：
-public class EqualsTest { public static void main(String[] args) { Integer a0 = 256; Integer b0 = 256; // 结果输出false：包装类型的相等比较应该用equals // Integer范围：-128~127 System.out.println(a0==b0); Integer a1 = -128; Integer b1 = -128; // 结果输出true：包装类型的相等比较应该用equals // Integer范围：-128~127 System.out.println(a1==b1); } }   分析：  上述定义变量a0、b0等，实际体现在Integer源码中是调用valueOf(int i)方法
-public static Integer valueOf(int i) { if (i &amp;gt;= IntegerCache.</description>
     </item>
     
   </channel>

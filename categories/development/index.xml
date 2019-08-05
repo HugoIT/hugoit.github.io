@@ -5,10 +5,42 @@
     <link>https://hugoit.github.io/categories/development/</link>
     <description>Recent content in development on 程序员说事儿</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hugoit.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>谈谈Java中线程的执行顺序</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid>
+      <description>线程执行顺序 我们先来看一个简单的例子，我们显示地创建三个线程t1、t2、t3，按照声明的顺序，依次分别调用线程的start方法，线程的执行顺序是怎样的？程序执行的结果会如何？：
+public class ThreadOrderDemo { // 显示地创建三个线程，观察执行顺序 static Thread t1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread1&amp;quot;); } }); static Thread t2 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread2&amp;quot;); } }); static Thread t3 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread3&amp;quot;); } }); public static void main(String[] args) throws Exception { t1.</description>
+    </item>
+    
+    <item>
+      <title>谈谈Java中hashCode和equals方法</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%ADhashcode%E5%92%8Cequals%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%ADhashcode%E5%92%8Cequals%E6%96%B9%E6%B3%95/</guid>
+      <description>在Java学习中，hashCode和equals方法，是一个绕不开的话题。 这两个方法到底有什么作用？这两个方法什么时候需要重写？如何重写？ 这篇文章，我们一起捋一捋Java中的hashCode和equals方法。
+hashCode和equals是Object的方法 我们可以参考查阅JDK8的官方API文档：https://docs.oracle.com/javase/8/docs/api/index.html
+Object类的描述 Class Object是类层次结构的根。每个类都有Object作为超类。所有对象（包括数组）都实现此类的方法。 所有的Java类默认继承Object类。只是隐式地默认集成。而没有使用extends关键字。
+hashCode方法描述 返回对象的哈希码值。 提供此方法是因为哈希表的优势，例如HashMap中使用的哈希表。 hashCode的一般契约是： + 每当在执行Java应用程序期间多次在同一对象上调用它时，hashCode方法必须始终返回相同的整数，前提是不修改对象的equals比较中使用的信息。从应用程序的一次执行到同一应用程序的另一次执行，该整数不需要保持一致。
+解读： 一次执行中的多次调用，同一个对象需要返回同一个hashcode值。 多次执行同一个对象，每次返回的hashcode值可以不一样。
+ 如果两个对象根据equals（Object）方法相等，则对两个对象中的每一个调用hashCode方法必须生成相同的整数结果。 如果两个对象根据equals（java.lang.Object）方法不相等，则不需要在两个对象中的每一个上调用hashCode方法必须生成不同的整数结果。但是，程序员应该知道，为不等的对象生成不同的整数结果可能会提高散列表的性能。  尽可能合理，Object类定义的hashCode方法确实为不同的对象返回不同的整数。（这通常通过将对象的内部地址转换为整数来实现，但Java™编程语言不需要此实现技术。）
+equals方法描述 表明某个其他对象是否“等于”此对象。 equals方法在非null对象引用上实现等价关系： + 自反性：对于任何非空引用值x，x.equals（x）应该返回true。 + 对称性：对于任何非空引用值x和y，当且仅当y.equals（x）返回true时，x.equals（y）才应返回true。 + 传递性：对于任何非空引用值x，y和z，如果x.equals（y）返回true而y.equals（z）返回true，则x.equals（z）应返回true。 + 一致性：对于任何非空引用值x和y，x.equals（y）的多次调用始终返回true或始终返回false，前提是不修改在对象的equals比较中使用的信息。对于任何非空引用值x，x.equals（null）应返回false。
+类Object的equals方法实现了对象上最具辨别力的等价关系;也就是说，对于任何非空引用值x和y，当且仅当x和y引用同一对象时，此方法才返回true（x == y的值为true）。
+请注意，通常需要在重写此方法时覆盖hashCode方法，以便维护hashCode方法的常规协定，该方法声明相等的对象必须具有相等的哈希代码。
+针对上述官方描述，我们继续查看equals方法：
+public boolean equals(Object obj) { return (this == obj); }  业务上相等 查看上述源码可知，在Object类中，equals比较的是对象地址是否相等，即是否是同一个对象，而不是比较值是否相等。
+而我们业务中通常追求的是只是业务上的内容相等，所以我们业务中使用的类都是需要重写equals和hashCode方法的。
+重写equals方法，同时必须重写hashCode方法 我们从Objec类官方API文档中，可知： “如果两个对象根据equals（Object）方法相等，则对两个对象中的每一个调用hashCode方法必须生成相同的整数结果”。 所以我们重写equals方法的时候，为了满足这个原则，也必须同时重写hashCode方法。
+public class ObjectEquals { public static void main(String[] args) { Student student1 = new Student(&amp;quot;LeBron Jame&amp;quot;, 12); Student student2 = new Student(&amp;quot;LeBron Jame&amp;quot;, 12); System.</description>
+    </item>
     
     <item>
       <title>谈谈Java中==和equals到底有啥区别</title>

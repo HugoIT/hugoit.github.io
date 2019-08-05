@@ -4,10 +4,28 @@
     <link>https://hugoit.github.io/posts/</link>
     <description>Recent content in Posts on 程序员说事儿</description>
     <meta name="generator" content="Hugo 0.56.3" />
-    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://hugoit.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>谈谈Java中线程的执行顺序</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid>
+      <description>谈谈Java中线程的执行顺序，走进源码看真相.</description>
+    </item>
+    
+    <item>
+      <title>谈谈Java中hashCode和equals方法</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%ADhashcode%E5%92%8Cequals%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%ADhashcode%E5%92%8Cequals%E6%96%B9%E6%B3%95/</guid>
+      <description>谈谈Java中hashCode和equals方法，走进源码看真相.</description>
+    </item>
     
     <item>
       <title>谈谈Java中==和equals到底有啥区别</title>

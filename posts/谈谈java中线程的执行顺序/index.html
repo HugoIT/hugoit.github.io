@@ -2,7 +2,7 @@
 <html lang="">
 	<head>
 		<title>
-	Tag | 源码
+	谈谈Java中线程的执行顺序
 </title>
 		<style>
 	body, body.pushable {
@@ -18,8 +18,10 @@
 
 
 	
+	
+	
 	<meta name="author" content="程序虫" />
-	<meta name="description" content="" />
+	<meta name="description" content="谈谈Java中线程的执行顺序，走进源码看真相." />
 
 
 
@@ -29,8 +31,6 @@
 <link rel="shortcut icon" href="/img/defaultFav.ico">
 
 
-
-    <link rel="alternate" type="application/rss+xml" href="https://hugoit.github.io/tags/%E6%BA%90%E7%A0%81/index.xml" title="程序员说事儿" />
 
 
 		
@@ -157,25 +157,25 @@ function getRandomInt(min, max) {
 			<a class="ui label violet " href="/tags/java" title="java">java</a>
 		
 			
-			<a class="ui label teal " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
+			<a class="ui label violet " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
 		
 			
-			<a class="ui label teal " href="/tags/equals" title="equals">equals</a>
+			<a class="ui label blue " href="/tags/equals" title="equals">equals</a>
 		
 			
 			<a class="ui label brown " href="/tags/effective-java" title="effective-java">effective-java</a>
 		
 			
-			<a class="ui label orange " href="/tags/hashcode" title="hashcode">hashcode</a>
+			<a class="ui label brown " href="/tags/hashcode" title="hashcode">hashcode</a>
 		
 			
-			<a class="ui label olive " href="/tags/integer" title="integer">integer</a>
+			<a class="ui label blue " href="/tags/integer" title="integer">integer</a>
 		
 			
-			<a class="ui label brown " href="/tags/join" title="join">join</a>
+			<a class="ui label red " href="/tags/join" title="join">join</a>
 		
 			
-			<a class="ui label blue " href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">多线程</a>
+			<a class="ui label yellow " href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">多线程</a>
 		
 	
 
@@ -274,8 +274,6 @@ function getRandomInt(min, max) {
 			<div class="flipper">
 				<div class="front">
 					
-	
-		
 	<nav class="ui top secondary menu bar">
 	
 	<div class="item">
@@ -293,14 +291,14 @@ function getRandomInt(min, max) {
 
 	
 	
-		<div class="item">
-			<a href="/posts">
-				<i class="inverted big link archive icon" title="Archive"></i>
-			</a>
-		</div>
-	
 
 	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
 	
 
 	
@@ -317,6 +315,12 @@ function getRandomInt(min, max) {
 
 	
 	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
 
 	
 	
@@ -328,10 +332,11 @@ function getRandomInt(min, max) {
 	
 </nav>
 
-	
+
 	<div class="ui centered grid">
-		<div class="fifteen wide mobile fifteen wide tablet four wide computer column">
-			<div class="ui inverted accordion">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
 	<div id="header" class="ui inverted segment column box">		
 		
 		<header id="author" class="ui top attached center aligned inverted segment">
@@ -351,16 +356,16 @@ function getRandomInt(min, max) {
 		</header>
 
 		
-		<div class="active title header-title">
+		<div class=" title header-title">
 			
 				<div id="tag-category-pop" class="ui red right corner label">
-					<i class="hand point icon up" title="Show/hide tags and categories"></i>
+					<i class="hand point icon down" title="Show/hide tags and categories"></i>
 				</div>
 			
 		</div>
 		
 		
-		<div id="tag-category" class="active content">
+		<div id="tag-category" class=" content">
 			
 				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
 					
@@ -374,28 +379,28 @@ function getRandomInt(min, max) {
 	
 		
 			
-			<a class="ui label pink " href="/tags/java" title="java">java</a>
+			<a class="ui label purple " href="/tags/java" title="java">java</a>
 		
 			
-			<a class="ui label blue " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
+			<a class="ui label yellow " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
 		
 			
-			<a class="ui label pink " href="/tags/equals" title="equals">equals</a>
+			<a class="ui label brown " href="/tags/equals" title="equals">equals</a>
 		
 			
-			<a class="ui label blue " href="/tags/effective-java" title="effective-java">effective-java</a>
+			<a class="ui label purple " href="/tags/effective-java" title="effective-java">effective-java</a>
 		
 			
-			<a class="ui label yellow " href="/tags/hashcode" title="hashcode">hashcode</a>
+			<a class="ui label purple " href="/tags/hashcode" title="hashcode">hashcode</a>
 		
 			
-			<a class="ui label olive " href="/tags/integer" title="integer">integer</a>
+			<a class="ui label purple " href="/tags/integer" title="integer">integer</a>
 		
 			
 			<a class="ui label orange " href="/tags/join" title="join">join</a>
 		
 			
-			<a class="ui label olive " href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">多线程</a>
+			<a class="ui label blue " href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">多线程</a>
 		
 	
 
@@ -491,119 +496,304 @@ function getRandomInt(min, max) {
 </div>
 
 		</div>
-		
-		<div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list">
-			<div class="cards row box">
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					谈谈Java中线程的执行顺序
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>Jul 28, 2019</span></div>
+					
+					<div><span class="disqusComment"><i class="comment outline icon"></i><a href="https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/#disqus_thread" class="disqus-comment-count" data-disqus-identifier="6110cd7447f63fa394b9eddcd8d38a16"></a></span></div>
+					<div><span><i class="clock outline icon"></i>2 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on Jul 28, 2019</span></div>
+				</div>
+				<hr>
+
+				
+					<div class="toc">
+						<nav id="TableOfContents">
+<ul>
+<li><a href="#线程执行顺序">线程执行顺序</a></li>
+<li><a href="#方式一-使用join让主线程等待">方式一：使用join让主线程等待</a></li>
+<li><a href="#方式二-使用线程池队列">方式二：使用线程池队列</a></li>
+<li><a href="#推荐阅读">推荐阅读</a></li>
+</ul>
+</nav>
+					</div>
+				
+
+				<article class="post-content twemoji">
+					
+
+<h1 id="线程执行顺序">线程执行顺序&nbsp;<a class="anchor" href="#线程执行顺序"><i class="small linkify icon"></i></a> </h1>
+
+<p>我们先来看一个简单的例子，我们显示地创建三个线程t1、t2、t3，按照声明的顺序，依次分别调用线程的start方法，线程的执行顺序是怎样的？程序执行的结果会如何？：</p>
+
+<pre><code>public class ThreadOrderDemo {
+    // 显示地创建三个线程，观察执行顺序
+    static Thread t1 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread1&quot;);
+        }
+    });
+    static Thread t2 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread2&quot;);
+        }
+    });
+    static Thread t3 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread3&quot;);
+        }
+    });
+    public static void main(String[] args) throws Exception {
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+</code></pre>
+
+<p>猜测程序执行结果：
+1.按照代码顺序执行，依次为t1、t2、t3：</p>
+
+<pre><code>This is thread1
+This is thread2
+This is thread3
+</code></pre>
+
+<p>2.按照CPU调度规则，顺序随机：</p>
+
+<pre><code>This is thread1
+This is thread3
+This is thread2
+</code></pre>
+
+<p>我们经过编辑器执行，会发现结果是2，按照CPU调度，执行顺序随机。
+那我们如何让线程有序执行呢？以下有两种方式。</p>
+
+<h1 id="方式一-使用join让主线程等待">方式一：使用join让主线程等待&nbsp;<a class="anchor" href="#方式一-使用join让主线程等待"><i class="small linkify icon"></i></a> </h1>
+
+<pre><code>public static void main(String[] args) throws Exception {
+        // 方式一：使用join让主线程等待
+        t1.start();
+        t1.join();
+
+        t2.start();
+        t2.join();
+        
+        t3.start();
+    }
+</code></pre>
+
+<p>上述改写主线程main方法，使用Thread类提供的join方法，可以达到让线程有序执行的效果。</p>
+
+<pre><code>public final synchronized void join(long millis)
+    throws InterruptedException {
+        long base = System.currentTimeMillis();
+        long now = 0;
+
+        if (millis &lt; 0) {
+            throw new IllegalArgumentException(&quot;timeout value is negative&quot;);
+        }
+
+        if (millis == 0) {
+            while (isAlive()) {
+                wait(0);
+            }
+        } else {
+            while (isAlive()) {
+                long delay = millis - now;
+                if (delay &lt;= 0) {
+                    break;
+                }
+                wait(delay);
+                now = System.currentTimeMillis() - base;
+            }
+        }
+    }
+</code></pre>
+
+<p>查看Thread类源码，可知，此处join方法，实质上是通过调用Object的wait方法，让主线程等待子线程执行，子线程执行完之后，主线程再执行。</p>
+
+<h1 id="方式二-使用线程池队列">方式二：使用线程池队列&nbsp;<a class="anchor" href="#方式二-使用线程池队列"><i class="small linkify icon"></i></a> </h1>
+
+<pre><code>public class ThreadOrderDemo {
+    // 显示地创建三个线程，观察执行顺序
+    static Thread t1 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread1&quot;);
+        }
+    });
+    static Thread t2 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread2&quot;);
+        }
+    });
+    static Thread t3 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;This is thread3&quot;);
+        }
+    });
+    static ExecutorService executor = Executors.newSingleThreadExecutor();
+  
+    public static void main(String[] args) throws Exception {
+        // 方式二：使用线程池队列
+       executor.submit(t1);
+       executor.submit(t2);
+       executor.submit(t3);
+    }
+}
+</code></pre>
+
+<p>上述使用J.U.C（java.util.concurrent）包中的ExecutorService建立线程池队列，以保持线程有序执行。</p>
+
+<pre><code>public static ExecutorService newSingleThreadExecutor() {
+        return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                                    0L, TimeUnit.MILLISECONDS,
+                                    new LinkedBlockingQueue&lt;Runnable&gt;()));
+    }
+</code></pre>
+
+<pre><code>public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue&lt;Runnable&gt; workQueue) {
+        this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+             Executors.defaultThreadFactory(), defaultHandler);
+    }
+</code></pre>
+
+<hr />
+
+<p>序号 |参数名|类型|含义
+&ndash;|&ndash;|&ndash;|&ndash;
+1|corePoolSize|int|核心线程池大小
+2|maximumPoolSize|int|最大线程池大小
+3|keepAliveTime|long|线程最大空闲时间
+4|unit|TimeUnit|时间单位
+5|workQueue|BlockingQueue<Runnable>|线程等待队列
+6|threadFactory|ThreadFactory|线程创建工厂
+7|handler|RejectedExecutionHandler|拒绝策略</p>
+
+<p>上述Executors.newSingleThreadExecutor()实质是LinkedBlockingQueue，创建了一个阻塞的安全线程队列，FIFO先进先出，所以可以达到线程有序执行的目的。</p>
+
+<h1 id="推荐阅读">推荐阅读&nbsp;<a class="anchor" href="#推荐阅读"><i class="small linkify icon"></i></a> </h1>
+
+<p><a href="https://mp.weixin.qq.com/s/s97ssT4wQ5dfxXZngsqo2Q">谈谈Java中hashCode和equals方法</a></p>
+
+<p><a href="https://mp.weixin.qq.com/s/5D73DRy59ddAzE2k-zvw1Q">谈谈Java中==和equals到底有啥区别</a></p>
+
+<p><a href="https://mp.weixin.qq.com/s/QUZ59BsS_PzECJzqphPAug">从月薪5千到月薪3万，优秀的程序员</a></p>
+
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
 				
 					
 
 
-	
-	
-		
-	
 
 
-
-<article class="blog-card none flexbox">
 	
-	<img class="image" src="/img/default4.jpg"></img>
-	<div class="title-content twemoji">
-		<h3><a class="title" href=https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/>谈谈Java中线程的执行顺序</a></h3>
-		<div class="intro twemoji">
-			
-				谈谈Java中线程的执行顺序，走进源码看真相.
-			
-		</div>
-	</div>
-
+		<a class="ui label purple " href="/tags/java" title="java">java</a>
 	
-	<div class="utility-info">
-		<ul class="utility-list">
-			
-				<div><i class="comment icon"></i><span class="disqus-comment-count" data-disqus-identifier="6110cd7447f63fa394b9eddcd8d38a16"></span></div>
-			
-			<div><span><i class="calendar icon"></i>Jul 28, 2019</span></div>
-			<div><span><i class="clock icon"></i>2 min read</span></div>
-		</ul>
-	</div>
-	<div class="color-overlay"></div>
-</article>
+		<a class="ui label yellow " href="/tags/join" title="join">join</a>
+	
+		<a class="ui label orange " href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">多线程</a>
+	
+		<a class="ui label olive " href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0" title="线程池">线程池</a>
+	
+		<a class="ui label brown " href="/tags/%E5%B9%B6%E5%8F%91" title="并发">并发</a>
+	
+		<a class="ui label purple " href="/tags/%E6%BA%90%E7%A0%81" title="源码">源码</a>
+	
+
 
 				
+			</section>
+
+			
+			
+				<section class="ui secondary  attached segment share row box">
 					
 
 
-	
-	
-		
-	
 
 
 
-<article class="blog-card none flexbox">
+
+
+
+<div class="author">
 	
-	<img class="image" src="/img/default6.jpg"></img>
-	<div class="title-content twemoji">
-		<h3><a class="title" href=https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%ADhashcode%E5%92%8Cequals%E6%96%B9%E6%B3%95/>谈谈Java中hashCode和equals方法</a></h3>
-		<div class="intro twemoji">
-			
-				谈谈Java中hashCode和equals方法，走进源码看真相.
-			
-		</div>
+	<img class="avatar" src="https://raw.githubusercontent.com/UtkarshVerma/utkarshverma.github.io/source/static/images/avatar.jpg">
+	
+</div>
+<div class="info grow flexbox">
+	<a href="https://twitter.com/HugoIT">
+	<p class="name">程序虫</p>
+	</a>
+	<p class="desc"> </p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
 	</div>
-
-	
-	<div class="utility-info">
-		<ul class="utility-list">
-			
-				<div><i class="comment icon"></i><span class="disqus-comment-count" data-disqus-identifier="969a7b9153823b5759a99b850425c584"></span></div>
-			
-			<div><span><i class="calendar icon"></i>Jul 5, 2019</span></div>
-			<div><span><i class="clock icon"></i>2 min read</span></div>
-		</ul>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;谈谈Java中线程的执行顺序 &quot; by @HugoIT https:\/\/hugoit.github.io\/posts\/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
 	</div>
-	<div class="color-overlay"></div>
-</article>
+</section>
 
-				
-					
-
-
-	
-	
-		
-	
-
-
-
-<article class="blog-card none flexbox">
-	
-	<img class="image" src="/img/default6.jpg"></img>
-	<div class="title-content twemoji">
-		<h3><a class="title" href=https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E5%92%8Cequals%E5%88%B0%E5%BA%95%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB/>谈谈Java中==和equals到底有啥区别</a></h3>
-		<div class="intro twemoji">
+				</section>
 			
-				Java中==和equals的区别，走进源码看真相.
-			
-		</div>
-	</div>
 
-	
-	<div class="utility-info">
-		<ul class="utility-list">
 			
-				<div><i class="comment icon"></i><span class="disqus-comment-count" data-disqus-identifier="7476a1957419f8e2abd67f0cb5a6de39"></span></div>
 			
-			<div><span><i class="calendar icon"></i>Jul 3, 2019</span></div>
-			<div><span><i class="clock icon"></i>2 min read</span></div>
-		</ul>
-	</div>
-	<div class="color-overlay"></div>
-</article>
+			
 
-				
-			</div>
+			
+			
+				<div class="ui secondary bottom attached stacked segment disqus">
+					 
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'Your appId',
+      appKey: 'Your appKey',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+				</div>
+			
 		</div>
 	</div>
 
@@ -727,9 +917,7 @@ function getRandomInt(min, max) {
 		
 	
 	
-		
-			<script id="dsq-count-scr" src="//dream-plus.disqus.com/count.js" async></script>
-		
+		<script id="dsq-count-scr" src="//dream-plus.disqus.com/count.js" async></script>
 	
 
 		

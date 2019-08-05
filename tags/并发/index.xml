@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>并发 on 程序员说事儿</title>
+    <link>https://hugoit.github.io/tags/%E5%B9%B6%E5%8F%91/</link>
+    <description>Recent content in 并发 on 程序员说事儿</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://hugoit.github.io/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>谈谈Java中线程的执行顺序</title>
+      <link>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugoit.github.io/posts/%E8%B0%88%E8%B0%88java%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid>
+      <description>线程执行顺序 我们先来看一个简单的例子，我们显示地创建三个线程t1、t2、t3，按照声明的顺序，依次分别调用线程的start方法，线程的执行顺序是怎样的？程序执行的结果会如何？：
+public class ThreadOrderDemo { // 显示地创建三个线程，观察执行顺序 static Thread t1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread1&amp;quot;); } }); static Thread t2 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread2&amp;quot;); } }); static Thread t3 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;quot;This is thread3&amp;quot;); } }); public static void main(String[] args) throws Exception { t1.</description>
+    </item>
+    
+  </channel>
+</rss>
